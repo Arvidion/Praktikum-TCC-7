@@ -10,7 +10,7 @@ function NotesApp() {
 
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [note, setNote] = useState("");
 
   useEffect(() => {
     fetchNotes();
@@ -26,14 +26,14 @@ function NotesApp() {
   };
 
   const addNote = async () => {
-    if (!title.trim() || !content.trim()) return;
+    if (!title.trim() || !note.trim()) return;
 
     try {
-      const response = await axios.post(`${BASE_URL}/add-note`, { title, content });
+      const response = await axios.post(`${BASE_URL}/add-note`, { title, note });
       if (response.data.data) {
         setNotes((prevNotes) => [...prevNotes, response.data.data]);
         setTitle("");
-        setContent("");
+        setNote("");
       }
     } catch (error) {
       console.error("Error adding note:", error);
@@ -71,7 +71,7 @@ function NotesApp() {
     try {
       const response = await axios.put(`${BASE_URL}/update-note/${id}`, {
         title: newTitle,
-        content: newContent,
+        note: newContent,
       });
 
       if (response.data.data) {
@@ -133,8 +133,8 @@ function NotesApp() {
           <textarea
             className="w-full p-2 border rounded mb-2"
             placeholder="Content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
           ></textarea>
           <button
             className="w-full bg-blue-500 text-white p-2 rounded"
@@ -164,15 +164,15 @@ function NotesApp() {
                     />
                     <textarea
                       className="w-full p-2 border rounded mb-2"
-                      value={note.content}
+                      value={note.note}
                       onChange={(e) =>
-                        handleInputChange(note.id, "content", e.target.value)
+                        handleInputChange(note.id, "note", e.target.value)
                       }
                     ></textarea>
                     <button
                       className="bg-green-500 text-white p-2 rounded mt-2 w-full"
                       onClick={() => {
-                        saveNote(note.id, note.title, note.content);
+                        saveNote(note.id, note.title, note.note);
                         toggleEditMode(note.id);
                       }}
                     >
@@ -182,7 +182,7 @@ function NotesApp() {
                 ) : (
                   <>
                     <h2 className="text-xl font-bold text-center">{note.title}</h2>
-                    <p className="text-gray-700 text-center">{note.content}</p>
+                    <p className="text-gray-700 text-center">{note.note}</p>
                   </>
                 )}
                 <div className="flex gap-2 mt-2 w-full">
