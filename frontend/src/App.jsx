@@ -1,6 +1,6 @@
 // src/App.jsx
 import { AuthProvider } from "./auth/authProvider";
-import Router from "./routes/RouterApp"; // halaman-halaman
+import Router from "./routes/Router"; // halaman-halaman
 import AxiosInterceptor from "./api/axiosInterceptor";
 
 
