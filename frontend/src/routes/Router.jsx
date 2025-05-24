@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import untuk routing
 import LoginPage from "../pages/LoginPage"; // Halaman login
-import RegisterPage from "../pages/RegisterPage";
+import RegisterPage from "../pages/Register";
 import Notes from "../pages/Notes";
 import ProtectedRoute from "../pages/ProtectedRoute";
 
